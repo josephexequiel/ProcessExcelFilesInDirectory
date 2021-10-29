@@ -223,6 +223,7 @@ try
         $finalDataArr[$finalDataArrCount].TotalUnfundedCustomers = $totalUnfunded
         $finalDataArr[$finalDataArrCount].TotalOtherCustomers = $totalOthers
         $finalDataArrCount++
+        Write-Host "[INFO] File processed: $fileName"
     }
 
     $finalDataArr | Export-Excel -WorkSheetName "Summary" -Path $outputSummaryFile

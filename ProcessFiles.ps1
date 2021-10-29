@@ -226,10 +226,12 @@ try
         Write-Host "[INFO] File processed: $fileName"
     }
 
+    Write-Host ("[INFO] Populating records. Please wait...")
     $finalDataArr | Export-Excel -WorkSheetName "Summary" -Path $outputSummaryFile
     $finalRecordArr | Export-Excel -WorkSheetName "RecordList" -Path $outputSummaryFile
     Write-Output ("[INFO] Records populated")
 
+    Write-Host ("[INFO] Fixing formatting. Please wait...")
     $workBook = $objExcel.Workbooks.Open($outputSummaryFile)
     $workSheet = $workBook.Sheets.Item("Summary")
     $rowCount = $workSheet.UsedRange.rows.count
@@ -243,10 +245,11 @@ try
     $workSheet.Range("G2:G$rowCount").NumberFormat = 'MM/dd/yyyy'
     $workSheet.Range("H2:H$rowCount").NumberFormat = 'MM/dd/yyyy'
     $workSheet.UsedRange.Columns.Autofit() | Out-Null
+    Write-Host ("[INFO] Workbook formatted")
 
+    Write-Host ("[INFO] Saving changes to workbook. Please wait...")
     $workBook.SaveAs($outputSummaryFile)
     $workBook.Close($False)
-
     Write-Output ("[INFO] Workbook generated: $outputSummaryFile")
 }
 finally

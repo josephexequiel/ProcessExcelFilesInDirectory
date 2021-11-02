@@ -140,21 +140,21 @@ try
                 $sleepingCustomerCount = $sleepingCustomerDebit
             }
             
-            if (($getAccountAge -gt 1) -And ($getBookedBalance -ge 1) -And ($inactiveCount -lt 0) -And ($sleepingCustomerCount -le 90))
+            if (($getAccountAge -gt 1) -And ($getBookedBalance -gt 1) -And ($inactiveCount -lt 0) -And ($sleepingCustomerCount -le 90))
             {
                 $showAccountType = "Active"
                 $showAccountClass = "Non-Sleeping Customer"
                 $totalActive++
                 $totalNonSleeping++
             }
-            elseif (($getAccountAge -gt 1) -And ($getBookedBalance -lt 1) -And ($inactiveCount -ge 0))
+            elseif (($getAccountAge -gt 1) -And ($getBookedBalance -le 1) -And ($inactiveCount -ge 0))
             {
                 $showAccountType = "Inactive"
                 $showAccountClass = "Unfunded Customer"
                 $totalInactive++
                 $totalUnfunded++
             }
-            elseif (($getAccountAge -gt 1) -And ($getBookedBalance -lt 1) -And ($inactiveCount -lt 0) -And ($sleepingCustomerCount -gt 90))
+            elseif (($getAccountAge -gt 1) -And ($getBookedBalance -le 1) -And ($inactiveCount -lt 0) -And ($sleepingCustomerCount -gt 90))
             {
                 $showAccountType = "Inactive"
                 $showAccountClass = "Sleeping Customer"
@@ -165,12 +165,12 @@ try
             {
                 $showAccountClass = "Onboarding Customer"
                 $totalOnboarding++
-                if ($getBookedBalance -ge 1)
+                if ($getBookedBalance -gt 1)
                 {
                     $showAccountType = "Active"
                     $totalActive++
                 }
-                elseif ($getBookedBalance -lt 1)
+                elseif ($getBookedBalance -le 1)
                 {
                     $showAccountType = "Inactive"
                     $totalInactive++
@@ -184,12 +184,12 @@ try
             {
                 $showAccountClass = "Other Customer"
                 $totalOthers++
-                if ($getBookedBalance -ge 1)
+                if ($getBookedBalance -gt 1)
                 {
                     $showAccountType = "Active"
                     $totalActive++
                 }
-                elseif ($getBookedBalance -lt 1)
+                elseif ($getBookedBalance -le 1)
                 {
                     $showAccountType = "Inactive"
                     $totalInactive++

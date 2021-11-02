@@ -229,12 +229,12 @@ try
         $finalDataArr[$finalDataArrCount].TotalOtherCustomers = $totalOthers
         $finalDataArrCount++
         Write-Host "[INFO] File processed: $fileName"
-
-        Write-Host ("[INFO] Populating records. Please wait...")
-        $finalDataArr | Export-Excel -WorkSheetName "Summary" -Path $outputSummaryFile
-        $finalRecordArr | Export-Excel -WorkSheetName "RecordList" -Path $outputSummaryFile
-        Write-Output ("[INFO] Records populated")
     }
+
+    Write-Host ("[INFO] Populating records. Please wait...")
+    $finalDataArr | Export-Excel -WorkSheetName "Summary" -Path $outputSummaryFile
+    $finalRecordArr | Export-Excel -WorkSheetName "RecordList" -Path $outputSummaryFile
+    Write-Output ("[INFO] Records populated")
 
     Write-Host ("[INFO] Fixing formatting. Please wait...")
     $workBook = $objExcel.Workbooks.Open($outputSummaryFile)
